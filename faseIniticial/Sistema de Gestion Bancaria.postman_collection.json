@@ -109,7 +109,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"nombre\": \"Marcos Pérez\",\r\n  \"numeroIdentificacion\": \"333456789\",\r\n  \"detallesContacto\": \"marcos.perez@example.com\"\r\n}\r\n",
+					"raw": "{\r\n  \"nombre\": \"Marcos Pérez\",\r\n  \"numeroIdentificacion\": \"333456789\",\r\n  \"detallesContacto\": \"marcos.perez@example.com\",\r\n  \"tipoCliente\": {\r\n    \"idTipoCliente\": 1\r\n  }\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -259,6 +259,28 @@
 							"key": "monto",
 							"value": "1000.00"
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener historial de transacciones de una cuenta",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/transacciones/historial/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"transacciones",
+						"historial",
+						"1"
 					]
 				}
 			},
