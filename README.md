@@ -7,44 +7,30 @@
 
 ### Correr Proyecto Local
 
-```bash
-mvn clean install
-mvn spring-boot:run
-mvn clean package
-```
+## Correr el Proyecto Local
+
+Para ejecutar el proyecto localmente, sigue estos pasos:
+
+1. **Compilar e instalar las dependencias del proyecto**:
+    ```bash
+    mvn clean install
+    ```
+
+2. **Iniciar la aplicación Spring Boot**:
+    ```bash
+    mvn spring-boot:run
+    ```
+
+3. **Generar el paquete del proyecto**:
+    ```bash
+    mvn clean package
+    ```
 
 ---
 
 ## Endpoints
 
-### Clientes
+Se encuentran el archivos de Postman, el cual solo requiere importar.
 
-**Method GET**
 
-- Listar Clientes: `http://localhost:8080/api/clientes`
-- Obtener Cliente por ID: `http://localhost:8080/api/clientes/{id}`
-
-### Cuentas Bancarias
-
-**Method POST**
-
-- Crear una Cuenta Bancaria: `http://localhost:8080/api/cuentas`
-
-  ```json
-  {
-    "numeroCuenta": "12345",
-    "tipoCuenta": "Ahorros",
-    "saldo": 1000.00
-  }
-  ```
-
-### Transacciones
-
-**Method GET**
-
-- Transferir Fondos: `http://localhost:8080/api/transacciones/transferencia?cuentaOrigen={id}&cuentaDestino={id}&monto={monto}`
-  
-  **Ejemplo:**
-  ```
-  http://localhost:8080/api/transacciones/transferencia?cuentaOrigen=1&cuentaDestino=2&monto=500.00
   
