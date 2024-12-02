@@ -1,0 +1,62 @@
+# 1. Transferencia de fondos
+
+
+function transferirFondos(idCuentaOrigen, idCuentaDestino, monto):
+    cuentaOrigen = obtenerCuenta(idCuentaOrigen)
+    cuentaDestino = obtenerCuenta(idCuentaDestino)
+
+    if cuentaOrigen.saldo < monto:
+        return "Saldo insuficiente"
+    
+    iniciarTransaccion()  # Comienza una transacción para asegurar atomicidad
+
+    try:
+        actualizarSaldo(cuentaOrigen, cuentaOrigen.saldo - monto)
+        actualizarSaldo(cuentaDestino, cuentaDestino.saldo + monto)
+        registrarTransaccion("Transferencia", cuentaOrigen.id, cuentaDestino.id, monto)
+        commitTransaccion()  # Confirma los cambios
+        return "Transferencia exitosa"
+    except Exception as e:
+        rollbackTransaccion()  # Revierte los cambios si hay error
+        return "Error en la transferencia: " + e.message
+
+
+
+# 2. Depósito
+
+
+function depositarFondos(idCuenta, monto):
+    cuenta = obtenerCuenta(idCuenta)
+    if monto <= 0:
+        return "Monto inválido"
+    
+    actualizarSaldo(cuenta, cuenta.saldo + monto)
+    registrarTransaccion("Deposito", cuenta.id, null, monto)
+    return "Depósito exitoso"
+
+
+
+
+# 3. Historial de transacciones
+
+
+function obtenerHistorial(idCuenta, fechaInicio = null, fechaFin = null):
+    query = "SELECT * FROM transaccion WHERE cuenta_asociada = ?"
+    parametros = [idCuenta]
+
+    if fechaInicio != null:
+        query += " AND fecha >= ?"
+        parametros.append(fechaInicio)
+
+    if fechaFin != null:
+        query += " AND fecha <= ?"
+        parametros.append(fechaFin)
+    
+    return ejecutarQuery(query, parametros)
+
+
+
+
+
+
+

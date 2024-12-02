@@ -1,0 +1,115 @@
+{
+	"info": {
+		"_postman_id": "cb18e765-823b-4b7c-b32e-d0f7ea58d51c",
+		"name": "Sistema de Gestion Bancaria",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16450662"
+	},
+	"item": [
+		{
+			"name": "Listar Clientes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/clientes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una Cuenta Bancaria",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"numeroCuenta\": \"12345\",\r\n  \"tipoCuenta\": \"Ahorros\",\r\n  \"saldo\": 1000.00\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/cuentas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"cuentas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transferir Fondos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/transacciones/transferencia?cuentaOrigen=1&cuentaDestino=2&monto=500.00",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"transacciones",
+						"transferencia"
+					],
+					"query": [
+						{
+							"key": "cuentaOrigen",
+							"value": "1"
+						},
+						{
+							"key": "cuentaDestino",
+							"value": "2"
+						},
+						{
+							"key": "monto",
+							"value": "500.00"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Cliente por ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/clientes/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"clientes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
