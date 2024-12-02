@@ -3,7 +3,7 @@
 ### Links de Descarga de Requisitos
 
 - **JDK 17**: [Descargar JDK 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
-- **MySQL 8**: [Descargar MySQL 8](https://dev.mysql.com/downloads/mysql/)
+- **MySQL 8.0.33**: [Descargar MySQL 8](https://dev.mysql.com/downloads/mysql/)
 
 ### Correr Proyecto Local
 
