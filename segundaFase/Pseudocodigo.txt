@@ -1,24 +1,45 @@
-# 1. Transferencia de fondos
+# 1. Modificación de Transferencia de fondos
 
 
 function transferirFondos(idCuentaOrigen, idCuentaDestino, monto):
     cuentaOrigen = obtenerCuenta(idCuentaOrigen)
     cuentaDestino = obtenerCuenta(idCuentaDestino)
+    clienteOrigen = obtenerCliente(cuentaOrigen.idCliente)
+    tipoCliente = obtenerTipoCliente(clienteOrigen.tipoCliente)
 
+    # Validar saldo disponible
     if cuentaOrigen.saldo < monto:
         return "Saldo insuficiente"
-    
+
+    # Calcular comisión si el monto supera 5,000,000
+    comision = 0
+    if monto > 5000000:
+        comision = monto * (tipoCliente.porcentajeComision / 100)
+
+    # Verificar si hay saldo suficiente para cubrir monto + comisión
+    if cuentaOrigen.saldo < (monto + comision):
+        return "Saldo insuficiente para cubrir el monto y la comisión"
+
     iniciarTransaccion()  # Comienza una transacción para asegurar atomicidad
 
     try:
-        actualizarSaldo(cuentaOrigen, cuentaOrigen.saldo - monto)
+        # Actualizar saldos
+        actualizarSaldo(cuentaOrigen, cuentaOrigen.saldo - monto - comision)
         actualizarSaldo(cuentaDestino, cuentaDestino.saldo + monto)
+
+        # Registrar la transacción principal
         registrarTransaccion("Transferencia", cuentaOrigen.id, cuentaDestino.id, monto)
+
+        # Registrar la comisión si aplica
+        if comision > 0:
+            registrarTransaccion("Comisión", cuentaOrigen.id, null, comision)
+
         commitTransaccion()  # Confirma los cambios
         return "Transferencia exitosa"
     except Exception as e:
         rollbackTransaccion()  # Revierte los cambios si hay error
         return "Error en la transferencia: " + e.message
+
 
 
 

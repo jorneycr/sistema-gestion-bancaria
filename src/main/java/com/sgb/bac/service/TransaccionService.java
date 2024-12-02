@@ -49,6 +49,9 @@ public class TransaccionService {
         transaccion.setCuentaOrigen(cuentaOrigen);
         transaccion.setCuentaDestino(cuentaDestino);
         transaccion.setMonto(monto);
+
+        transaccion.calcularComision();
+
         transaccionRepository.save(transaccion);
 
         return "Transferencia realizada con éxito.";

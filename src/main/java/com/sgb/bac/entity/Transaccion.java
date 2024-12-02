@@ -29,4 +29,14 @@ public class Transaccion {
 
     @Column(nullable = false)
     private LocalDateTime fecha = LocalDateTime.now();
+
+    @Column(nullable = false)
+    private BigDecimal comision = BigDecimal.ZERO;
+
+    public void calcularComision() {
+        if (cuentaOrigen != null && cuentaOrigen.getCliente().getTipoCliente() != null) {
+            BigDecimal porcentajeComision = cuentaOrigen.getCliente().getTipoCliente().getPorcentajeComision();
+            this.comision = monto.multiply(porcentajeComision).divide(BigDecimal.valueOf(100));
+        }
+    }
 }

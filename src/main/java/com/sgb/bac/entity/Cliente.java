@@ -1,7 +1,6 @@
 package com.sgb.bac.entity;
 
 import jakarta.persistence.*;
-
 import lombok.Data;
 
 @Entity
@@ -18,4 +17,8 @@ public class Cliente {
     private String numeroIdentificacion;
 
     private String detallesContacto;
+
+    @ManyToOne
+    @JoinColumn(name = "id_tipo_cliente", nullable = false)
+    private TipoCliente tipoCliente;
 }
